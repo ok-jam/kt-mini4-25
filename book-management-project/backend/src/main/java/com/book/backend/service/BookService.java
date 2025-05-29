@@ -1,4 +1,23 @@
 package com.book.backend.service;
 
-public class BookService {
+import com.book.backend.domain.Book;
+import com.book.backend.dto.BookDTO;
+
+import java.util.List;
+
+//import lombok.AllArgsConstructor;
+//import lombok.Getter;
+//import lombok.NoArgsConstructor;
+//import lombok.Setter;
+//
+//import java.time.LocalDateTime;
+
+public interface BookService {
+
+    Book bookRegist(BookDTO.BookRegist dto);
+    Book bookUpdate(Long id, BookDTO.BookUpdate dto);
+    Book bookCover(Long id, BookDTO.BookCover dto);
+    List<BookDTO.BookList> findAll();
+    BookDTO.BookDetail bookDetail(Long id);
+    void bookDelete(Long id);
 }

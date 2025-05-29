@@ -64,11 +64,11 @@ public class BookDTO {
         private LocalDateTime updatedAt;
     }
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class BookDelete {
-        private String title;
-    }
+//    @Getter
+//    @Setter
+//    @NoArgsConstructor
+//    @AllArgsConstructor
+//    public static class BookDelete {
+//        private String title;
+//    }
 }
