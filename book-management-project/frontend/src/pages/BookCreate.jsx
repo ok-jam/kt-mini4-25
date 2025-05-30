@@ -10,24 +10,23 @@ function BookCreate() {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-  // ✅ 유효성 검사 추가
-  if (!title.trim() || !content.trim()) {
-    alert('제목과 내용을 모두 입력해주세요.');
-    return;
-  }
-
-  try {
-    await axios.post('http://localhost:8080/api/books', {
-      title,
-      content
-    });
-    alert('도서가 등록되었습니다.');
-    navigate('/');
-  } catch (error) {
-    console.error('도서 등록 실패:', error);
-    alert('도서 등록 실패');
-  }
-};
+    // ✅ 유효성 검사 추가
+    if (!title.trim() || !content.trim()) {
+      alert('제목과 내용을 모두 입력해주세요.');
+      return;
+    }
+    try {
+      await axios.post('http://localhost:8080/api/books', {
+        title,
+        content
+      });
+      alert('도서가 등록되었습니다.');
+      navigate('/');
+    } catch (error) {
+      console.error('도서 등록 실패:', error);
+      alert('도서 등록 실패');
+    }
+  };
 
   return (
     

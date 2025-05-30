@@ -17,7 +17,10 @@ public class BookDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class BookRegist {  // Post
+        @NotBlank(message = "제목을 입력하세요.")
         private String title;
+
+        @NotBlank(message = "내용을 입력하세요.")
         private String content;
     }
 
@@ -28,14 +31,6 @@ public class BookDTO {
     public static class BookUpdate {  // Patch
         private String title;
         private String content;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class BookCover {  // Patch
-        private String coverImageUrl;
     }
 
     @Getter
@@ -64,11 +59,12 @@ public class BookDTO {
         private LocalDateTime updatedAt;
     }
 
-//    @Getter
-//    @Setter
-//    @NoArgsConstructor
-//    @AllArgsConstructor
-//    public static class BookDelete {
-//        private String title;
-//    }
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class BookCover {
+        private Long id;
+        private String coverImageUrl;
+    }
 }

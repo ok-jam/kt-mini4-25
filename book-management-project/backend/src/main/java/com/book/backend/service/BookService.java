@@ -16,8 +16,10 @@ public interface BookService {
 
     Book bookRegist(BookDTO.BookRegist dto);
     Book bookUpdate(Long id, BookDTO.BookUpdate dto);
-    Book bookCover(Long id, BookDTO.BookCover dto);
+    String bookCover(Long id);
     List<BookDTO.BookList> bookList();
     BookDTO.BookDetail bookDetail(Long id);
     void bookDelete(Long id);
+
+    Book findBookEntity(Long id);
 }

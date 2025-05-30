@@ -22,7 +22,6 @@ public class BookServiceImpl implements BookService {
         Book book = new Book();
         book.setTitle(dto.getTitle());
         book.setContent(dto.getContent());
-        // book.setCoverImageUrl();
         return bookRepository.save(book);
     }
 
@@ -35,10 +34,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book bookCover(Long id, BookDTO.BookCover dto) {
-        Book book = bookRepository.findById(id).orElseThrow();
-        book.setCoverImageUrl(dto.getCoverImageUrl());
-        return bookRepository.save(book);
+    public String bookCover(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("책이 없습니다."));
+        String coverUrl = ImageService.generatedCoverFor(book);
+        book.setCoverImageUrl(coverUrl);
+        bookRepository.save(book);
+        return coverUrl;
     }
 
     @Override
@@ -68,5 +69,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public void bookDelete(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public Book findBookEntity(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("책 없음"));
     }
 }
