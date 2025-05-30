@@ -68,33 +68,39 @@ function BookList() {
                         작가의 산책
                     </Typography>
 
-                    <Grid container spacing={2}>
+                    <Grid container spacing={3}>
                         {books.map((book) => (
-                            <Grid item xs={12} sm={6} key={book.id}>
-                                <Card 
-                                    variant={selectedBookId === book.id ? "outlined" : "elevation"} 
-                                    sx={{ 
-                                        backgroundColor: selectedBookId === book.id ? '#fce4ec' : 'white', 
-                                        cursor: 'pointer'
+                            <Grid item xs={12} sm={6} md={4} key={book.id}>
+                                <Card
+                                    sx={{
+                                    border: selectedBookId === book.id ? '2px solid #1976d2' : '1px solid #e0e0e0',
+                                    boxShadow: selectedBookId === book.id ? '0 4px 20px rgba(25, 118, 210, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
+                                    transition: 'all 0.3s',
+                                    backgroundColor: selectedBookId === book.id ? '#e3f2fd' : '#fff',
+                                    cursor: 'pointer',
+                                    '&:hover': {
+                                        boxShadow: '0 4px 20px rgba(25, 118, 210, 0.3)',
+                                    },
                                     }}
-                                    onClick={() => handleCheck(book.id)}
                                 >
                                     <CardContent>
-                                        <Stack direction="row" alignItems="center" spacing={1}>
-                                            <Checkbox 
-                                                checked={selectedBookId === book.id}
-                                                onChange={() => handleCheck(book.id)}
-                                            />
-                                            <Box>
-                                                <Typography variant="h6">{book.title}</Typography>
-                                                <Typography variant="body2" color="text.secondary">{book.content}</Typography>
-                                            </Box>
-                                        </Stack>
+                                    <Stack direction="row" alignItems="center" spacing={1}>
+                                        <Checkbox
+                                        checked={selectedBookId === book.id}
+                                        onChange={() => handleCheck(book.id)}
+                                        onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
+                                        />
+                                        <Box>
+                                        <Typography variant="h6">{book.title}</Typography>
+                                        <Typography variant="body2" color="text.secondary">{book.content}</Typography>
+                                        </Box>
+                                    </Stack>
                                     </CardContent>
                                 </Card>
                             </Grid>
                         ))}
                     </Grid>
+
 
                     <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
                         <Button variant="contained" onClick={() => navigate('/create')}>도서 등록</Button>
