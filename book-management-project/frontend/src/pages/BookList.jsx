@@ -58,22 +58,22 @@ function BookList() {
                 <HomeButton/>
                 <h1 className="title">작가의 산책</h1>
 
-                <div className="card-list">
-                    {books.map((book) => (
-                        <div className="book-card" key={book.id}>
-                            <input
-                                type="checkbox"
-                                checked={selectedBookId === book.id}
-                                onChange={() => handleCheck(book.id)}
-                                style={{ marginRight: '10px' }}
-                            />
-                            <div>
-                                <h3>{book.title}</h3>
-                                <p>{book.content}</p>
-                            </div>
+            <div className="card-list">
+                {books.map((book) => (
+                    <div className="book-card" key={book.id}>
+                        <input
+                            type="checkbox"
+                            checked={selectedBookId === book.id}
+                            onChange={() => handleCheck(book.id)}
+                            style={{ marginRight: '10px' }}
+                        />
+                        <div>
+                            <h3>{book.title}</h3>
+                            <p>{book.content}</p>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
+            </div>
 
                 <div className="button-group">
                     <Button variant="contained" onClick={() => navigate('/create')}>도서 등록</Button>
