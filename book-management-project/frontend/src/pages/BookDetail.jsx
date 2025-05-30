@@ -12,6 +12,9 @@ import {
 import HomeButton from '../Components/HomeButton';
 import theme from './theme.ts';
 import { ThemeProvider } from '@mui/material/styles';
+import HomeIcon from '@mui/icons-material/Home';
+import { CssBaseline, AppBar, Toolbar, IconButton } from '@mui/material';
+
 
 
 function BookDetail() {
@@ -30,8 +33,18 @@ function BookDetail() {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar position="static" sx={{ backgroundColor: '#F7DADB', boxShadow: 0 }}>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" onClick={() => navigate('/')}>
+            <HomeIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ color: '#333' }}>
+            작가의 산책
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Container maxWidth="md" sx={{ mt: 5 }}>
-        <HomeButton />
         
         <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
           정보 조회
