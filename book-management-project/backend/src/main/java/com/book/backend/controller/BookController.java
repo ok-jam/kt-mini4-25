@@ -23,15 +23,30 @@ public class BookController {
 //        return List.of("도서 1", "도서 2", "도서 3");
 //    }
 
+    // 도서 등록
     @PostMapping
     public ResponseEntity<Book> bookRegist(@RequestBody BookDTO.BookRegist dto) {
         Book book = bookService.bookRegist(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 
+    // 도서 목록 조회
     @GetMapping
     public ResponseEntity<List<BookDTO.BookList>> bookList() {
         List<BookDTO.BookList> books = bookService.bookList();
         return ResponseEntity.ok(books);
     }
+
+//    // 도서 정보 수정
+//    @PatchMapping
+//    public ResponseEntity<Book> bookUpdate(@RequestBody BookDTO.BookUpdate dto) {
+//        Book book = bookService.bookUpdate(dto);
+//        return ResponseEntity.ok(book);
+//    }
+
+    // 도서 삭제
+
+    // 도서 조회
+
+    // 표지 등록
 }
