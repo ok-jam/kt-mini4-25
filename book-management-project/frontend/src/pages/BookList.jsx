@@ -87,7 +87,35 @@ function BookList() {
                                             boxShadow: '0 4px 20px rgba(25, 118, 210, 0.3)',
                                         },
                                     }}
+                                    onClick={() => handleCheck(book.id)}
                                 >
+                                    {book.thumbnailUrl ? (
+                                        <Box
+                                            component="img"
+                                            src={book.thumbnailUrl}
+                                            alt={book.title}
+                                            sx={{
+                                            width: '100%',
+                                            height: 140,
+                                            objectFit: 'cover', // 이미지 비율 유지
+                                            }}
+                                        />
+                                        ) : (
+                                        <Box
+                                            sx={{
+                                            width: '100%',
+                                            height: 140,
+                                            backgroundColor: '#f0f0f0', // 비어있을 때 색상
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#aaa',
+                                            fontSize: 14,
+                                            }}
+                                        >
+                                            이미지 없음
+                                        </Box>
+                                        )}
                                     <CardContent>
                                     <Stack direction="row" alignItems="center" spacing={1}>
                                         <Checkbox
