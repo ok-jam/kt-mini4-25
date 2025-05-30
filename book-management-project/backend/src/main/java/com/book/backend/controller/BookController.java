@@ -23,7 +23,6 @@ public class BookController {
 //        return List.of("도서 1", "도서 2", "도서 3");
 //    }
 
-    // 도서 등록
     @PostMapping
     public ResponseEntity<Book> bookRegist(@RequestBody BookDTO.BookRegist dto) {
         Book book = bookService.bookRegist(dto);
