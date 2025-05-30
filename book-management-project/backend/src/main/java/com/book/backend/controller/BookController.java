@@ -5,6 +5,8 @@ import java.util.List;
 import com.book.backend.domain.Book;
 import com.book.backend.dto.BookDTO;
 import com.book.backend.service.BookService;
+import com.book.backend.service.ImageService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -17,10 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
 
     public final BookService bookService;
+    public final ImageService imageService;
 
     // 도서 등록
     @PostMapping
-    public ResponseEntity<Book> bookRegist(@RequestBody BookDTO.BookRegist dto) {
+    public ResponseEntity<Book> bookRegist(@Valid @RequestBody BookDTO.BookRegist dto) {
         Book bookRegist = bookService.bookRegist(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(bookRegist);
     }
@@ -32,6 +35,7 @@ public class BookController {
         return ResponseEntity.ok(books);
     }
 
+    // 도서 정보 수정
     @PatchMapping("/{id}")
     public ResponseEntity<BookDTO.BookList> bookUpdate(@PathVariable Long id,
                                                        @RequestBody BookDTO.BookUpdate dto) {
@@ -61,5 +65,9 @@ public class BookController {
     }
 
     // 표지 등록
-
+    @PostMapping("/{id}/generate-cover")
+    public ResponseEntity<String> bookCover(@PathVariable Long id) {
+        String url = bookService.bookCover(id);
+        return ResponseEntity.ok(url);
+    }
 }
