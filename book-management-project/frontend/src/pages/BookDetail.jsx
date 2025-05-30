@@ -46,7 +46,7 @@ function BookDetail() {
 
       <div className="button-group">
         <button onClick={() => navigate(`/update/${id}`)}>정보 수정</button>
-        <button className="danger" onClick={() => navigate(-1)}>취소</button>
+        <button className="danger" onClick={() => navigate('/')}>취소</button>
       </div>
     </div>
   );

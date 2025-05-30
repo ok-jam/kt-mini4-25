@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BookList.css';
 import HomeButton from '../Components/HomeButton';
+import theme from './theme.ts';
+import { ThemeProvider } from '@emotion/react';
+import Button from '@mui/material/Button'
+
 function BookList() {
     const [books, setBooks] = useState([]);
     const [selectedBookId, setSelectedBookId] = useState(null);
@@ -49,9 +53,10 @@ function BookList() {
     };
 
     return (
-        <div className="main-container">
-            <HomeButton/>
-            <h1 className="title">작가의 산책</h1>
+        <ThemeProvider theme={theme}>
+            <div className="main-container">
+                <HomeButton/>
+                <h1 className="title">작가의 산책</h1>
 
             <div className="card-list">
                 {books.map((book) => (
@@ -70,13 +75,15 @@ function BookList() {
                 ))}
             </div>
 
-            <div className="button-group">
-                <button onClick={() => navigate('/create')}>도서 등록</button>
-                <button onClick={handleView}>도서 조회</button>
-                <button>표지 등록</button>
-                <button className="danger" onClick={handleDelete}>도서 삭제</button>
+                <div className="button-group">
+                    <Button variant="contained" onClick={() => navigate('/create')}>도서 등록</Button>
+                    <Button variant="contained" onClick={handleView}>도서 조회</Button>
+                    <Button variant="contained">표지 등록</Button>
+                    <Button variant="contained" color="error" onClick={handleDelete}>도서 삭제</Button>
+                </div>
+
             </div>
-        </div>
+        </ThemeProvider>
     );
 }
 
