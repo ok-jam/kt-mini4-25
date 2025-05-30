@@ -9,6 +9,6 @@ import java.awt.*;
 public class ImageService {
 
     public static String generatedCoverFor(Book book) {
-        return "https://m.health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0" + book.getId() + ".jpg";
+        return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToKyZXTzFaRDVYt41xFGAhseK5qdchEwYzTQ&s" + book.getId() + ".jpg";
     }
 }
