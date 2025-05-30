@@ -10,7 +10,10 @@ function BookList() {
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/books')
-            .then((res) => setBooks(res.data))
+            .then((res) => {
+                console.log("응답데이터:", res.data);
+                setBooks(res.data);
+            })
             .catch((err) => console.error('백엔드 연결 실패:', err));
     }, []);
 
@@ -20,7 +23,9 @@ function BookList() {
 
             <div className="card-list">
                 {books.map((book, i) => (
-                    <div className="placeholder-card" key={i} />
+                    <div className="placeholder-card" key={i}>
+                        {book}
+                    </div>
                 ))}
             </div>
 

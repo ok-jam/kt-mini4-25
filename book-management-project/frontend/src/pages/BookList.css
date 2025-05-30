@@ -11,10 +11,23 @@
 .placeholder-card {
     width: 100px;
     height: 150px;
-    background-color: #cbe8eb;
+    background-color: teal;
     border-radius: 12px;
     margin: 0 8px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    font-weight: bold;
 }
+
+.card-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
 
 .button-group button {
     margin: 0 0.5rem;
