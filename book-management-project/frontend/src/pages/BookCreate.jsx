@@ -1,13 +1,26 @@
 // BookCreate.jsx
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography, TextField, Button, Paper } from '@mui/material';
 
 function BookCreate() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const navigate = useNavigate();
 
-  const handleRegister = () => {
-    alert(`제목: ${title}\n내용: ${content}`);
+  const handleRegister = async () => {
+    try {
+        await axios.post('http://localhost:8080/api/books', {
+            title,
+            content
+        });
+        alert('도서가 등록되었습니다.')
+        navigate('/');
+    } catch (error) {
+        console.error('도서 등록 실패:', error);
+        alert('도서 등록 실패');
+    }
   };
 
   return (
