@@ -4,16 +4,16 @@ import axios from 'axios';
 import HomeButton from '../Components/HomeButton';
 import theme from './theme.ts';
 import { ThemeProvider } from '@emotion/react';
-import { 
-  Button, 
-  Typography, 
-  Card, 
-  CardContent, 
-  Container, 
-  Box, 
-  Stack, 
-  Grid, 
-  Checkbox 
+import {
+  Button,
+  Typography,
+  Card,
+  CardContent,
+  Container,
+  Box,
+  Stack,
+  Grid,
+  Checkbox
 } from '@mui/material';
 
 function BookList() {
@@ -73,16 +73,49 @@ function BookList() {
                             <Grid item xs={12} sm={6} md={4} key={book.id}>
                                 <Card
                                     sx={{
+                                    height: 250, // 카드 높이 고정
+                                    width: 200,
+                                    display: 'flex', // Flex 컨테이너로 설정
+                                    flexDirection: 'column', // 수직 정렬
+                                    justifyContent: 'space-between', // 공간 균등 분배
                                     border: selectedBookId === book.id ? '2px solid #1976d2' : '1px solid #e0e0e0',
                                     boxShadow: selectedBookId === book.id ? '0 4px 20px rgba(25, 118, 210, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
                                     transition: 'all 0.3s',
                                     backgroundColor: selectedBookId === book.id ? '#e3f2fd' : '#fff',
                                     cursor: 'pointer',
-                                    '&:hover': {
-                                        boxShadow: '0 4px 20px rgba(25, 118, 210, 0.3)',
-                                    },
+                                        '&:hover': {
+                                            boxShadow: '0 4px 20px rgba(25, 118, 210, 0.3)',
+                                        },
                                     }}
+                                    onClick={() => handleCheck(book.id)}
                                 >
+                                    {book.thumbnailUrl ? (
+                                        <Box
+                                            component="img"
+                                            src={book.thumbnailUrl}
+                                            alt={book.title}
+                                            sx={{
+                                            width: '100%',
+                                            height: 140,
+                                            objectFit: 'cover', // 이미지 비율 유지
+                                            }}
+                                        />
+                                        ) : (
+                                        <Box
+                                            sx={{
+                                            width: '100%',
+                                            height: 140,
+                                            backgroundColor: '#f0f0f0', // 비어있을 때 색상
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#aaa',
+                                            fontSize: 14,
+                                            }}
+                                        >
+                                            이미지 없음
+                                        </Box>
+                                        )}
                                     <CardContent>
                                     <Stack direction="row" alignItems="center" spacing={1}>
                                         <Checkbox
@@ -100,6 +133,7 @@ function BookList() {
                             </Grid>
                         ))}
                     </Grid>
+
 
 
                     <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
