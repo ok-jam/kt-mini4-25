@@ -23,8 +23,11 @@ function BookList() {
 
             <div className="card-list">
                 {books.map((book, i) => (
-                    <div className="placeholder-card" key={i}>
-                        {book}
+                    <div key={i} className="card-wrapper">
+                        <div className="placeholder-card">
+                            <p>{book.content}</p>
+                        </div>
+                        <div className="book-title">{book.title}</div>
                     </div>
                 ))}
             </div>
