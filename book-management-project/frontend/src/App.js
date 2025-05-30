@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BookList from './pages/BookList';
 import BookCreate from './pages/BookCreate';
+import BookDetail from "./pages/BookDetail";
+import BookUpdate from "./pages/BookUpdate";
 
 function App() {
   return (

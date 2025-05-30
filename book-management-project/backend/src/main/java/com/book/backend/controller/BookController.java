@@ -18,11 +18,6 @@ public class BookController {
 
     public final BookService bookService;
 
-//    @GetMapping
-//    public List<String> getBooks() {
-//        return List.of("도서 1", "도서 2", "도서 3");
-//    }
-
     // 도서 등록
     @PostMapping
     public ResponseEntity<Book> bookRegist(@RequestBody BookDTO.BookRegist dto) {
@@ -36,13 +31,6 @@ public class BookController {
         List<BookDTO.BookList> books = bookService.bookList();
         return ResponseEntity.ok(books);
     }
-
-//    도서 정보 수정
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<Book> bookUpdate(@PathVariable Long id, @RequestBody BookDTO.BookUpdate dto) {
-//        Book bookUpdate = bookService.bookUpdate(id, dto);
-//        return ResponseEntity.ok(bookUpdate);
-//    }
 
     @PatchMapping("/{id}")
     public ResponseEntity<BookDTO.BookList> bookUpdate(@PathVariable Long id,
@@ -59,7 +47,11 @@ public class BookController {
     }
 
     // 도서 삭제
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        bookService.bookDelete(id);
+        return ResponseEntity.noContent().build();
+    }
 
     // 도서 조회
     @GetMapping("/{id}")
@@ -67,7 +59,6 @@ public class BookController {
         BookDTO.BookDetail bookDetail = bookService.bookDetail(id);
         return ResponseEntity.ok(bookDetail);
     }
-
 
     // 표지 등록
 
