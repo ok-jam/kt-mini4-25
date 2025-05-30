@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BookCard from '../Components/BookCard';
 import './BookList.css'; // CSS 분리
 
 function BookList() {
     const [books, setBooks] = useState([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/books')
@@ -23,7 +25,7 @@ function BookList() {
             </div>
 
             <div className="button-group">
-                <button>도서 등록</button>
+                <button onClick={() => navigate('/create')}>도서 등록</button>
                 <button>도서 조회</button>
                 <button>표지 등록</button>
                 <button className="danger">도서 삭제</button>
