@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,12 +40,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDTO.BookList> findAll() {
-        return bookRepository.findAll().stream()
-                .map(b -> new BookDTO.BookList(
-                        b.getId(), b.getTitle(), b.getContent(),
-                        b.getCoverImageUrl(), b.getCreatedAt(), b.getUpdatedAt()))
-                .toList();
+    public List<BookDTO.BookList> bookList() {
+        List<Book> books = bookRepository.findAll();
+        return books.stream()
+                .map(book -> new BookDTO.BookList(
+                        book.getId(),
+                        book.getTitle(),
+                        book.getContent(),
+                        book.getCoverImageUrl(),
+                        book.getCreatedAt(),
+                        book.getUpdatedAt()
+                ))
+                .collect(Collectors.toList());
     }
 
     @Override

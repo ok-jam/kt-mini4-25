@@ -5,7 +5,6 @@ import BookCreate from './pages/BookCreate';
 import BookDetail from './pages/BookDetail';
 import BookUpdate from './pages/BookUpdate';
 
-
 function App() {
   return (
     <Router>
