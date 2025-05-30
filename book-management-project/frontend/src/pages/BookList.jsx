@@ -26,7 +26,7 @@ function BookList() {
 
             <div className="button-group">
                 <button onClick={() => navigate('/create')}>도서 등록</button>
-                <button>도서 조회</button>
+                <button onClick={() => navigate('/detail/1')}>도서 조회</button>
                 <button>표지 등록</button>
                 <button className="danger">도서 삭제</button>
             </div>
