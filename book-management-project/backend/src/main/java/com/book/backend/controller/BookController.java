@@ -37,12 +37,20 @@ public class BookController {
         return ResponseEntity.ok(books);
     }
 
-//    // 도서 정보 수정
-//    @PatchMapping
-//    public ResponseEntity<Book> bookUpdate(@RequestBody BookDTO.BookUpdate dto) {
-//        Book book = bookService.bookUpdate(dto);
-//        return ResponseEntity.ok(book);
-//    }
+    // 도서 정보 수정
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookDTO.BookList> bookUpdate(@PathVariable Long id,
+                                           @RequestBody BookDTO.BookUpdate dto) {
+        Book updated = bookService.bookUpdate(id, dto);
+        return ResponseEntity.ok(new BookDTO.BookList(
+                updated.getId(),
+                updated.getTitle(),
+                updated.getContent(),
+                updated.getCoverImageUrl(),
+                updated.getCreatedAt(),
+                updated.getUpdatedAt()
+        ));
+    }
 
     // 도서 삭제
 
