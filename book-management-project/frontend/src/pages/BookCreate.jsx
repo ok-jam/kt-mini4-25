@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, TextField, Button, Paper } from '@mui/material';
-
+import HomeButton from '../Components/HomeButton';
 function BookCreate() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -30,8 +30,10 @@ function BookCreate() {
 };
 
   return (
+    
     <Box sx={{ maxWidth: 500, mx: 'auto', mt: 5 }}>
       <Paper sx={{ p: 3 }}>
+        <div><HomeButton/></div>
         <Typography variant="h5" component="h1" align="center" gutterBottom>
           📚 도서 등록
         </Typography>

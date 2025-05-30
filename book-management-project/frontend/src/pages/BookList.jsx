@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BookList.css';
-
+import HomeButton from '../Components/HomeButton';
 function BookList() {
     const [books, setBooks] = useState([]);
     const [selectedBookId, setSelectedBookId] = useState(null);
@@ -50,6 +50,7 @@ function BookList() {
 
     return (
         <div className="main-container">
+            <HomeButton/>
             <h1 className="title">작가의 산책</h1>
 
             <div className="card-list">

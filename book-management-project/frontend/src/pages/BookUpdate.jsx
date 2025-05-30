@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { TextField, Button } from '@mui/material';
 import './BookList.css';
+import HomeButton from '../Components/HomeButton';
 
 function BookUpdate() {
   const { id } = useParams();
@@ -49,6 +50,7 @@ function BookUpdate() {
 
   return (
     <div className="main-container">
+      <HomeButton />
       <h1 className="title">정보 수정</h1>
 
       <TextField

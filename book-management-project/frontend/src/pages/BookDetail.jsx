@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BookList.css'; 
-
+import HomeButton from '../Components/HomeButton';
 function BookDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ function BookDetail() {
 
   return (
     <div className="main-container">
+      <HomeButton/>
       <h1 className="title">정보 조회</h1>
 
       <div style={{ marginBottom: '2rem' }}>
