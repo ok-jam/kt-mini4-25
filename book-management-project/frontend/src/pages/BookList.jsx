@@ -64,6 +64,14 @@ function BookList() {
                         />
                         <div>
                             <h3>{book.title}</h3>
+                            <img
+                            src={book.coverImageUrl || 'https://via.placeholder.com/100'}
+                            alt="표지"
+                            width={100}
+                            height={140}
+                            style={{ objectFit: 'cover', margin: '10px 0' }}
+                            />
+        
                             <p>{book.content}</p>
                         </div>
                     </div>

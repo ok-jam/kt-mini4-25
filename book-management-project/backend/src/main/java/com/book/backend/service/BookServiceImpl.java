@@ -1,13 +1,15 @@
 package com.book.backend.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
 import com.book.backend.domain.Book;
 import com.book.backend.dto.BookDTO;
 import com.book.backend.repository.BookRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class BookServiceImpl implements BookService {
         Book book = new Book();
         book.setTitle(dto.getTitle());
         book.setContent(dto.getContent());
-//        book.setCoverImageUrl();
+        // book.setCoverImageUrl();
         return bookRepository.save(book);
     }
 
