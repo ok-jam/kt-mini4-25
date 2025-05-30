@@ -28,7 +28,7 @@ public class Book {
     private String content;
 
     @URL
-    @Column(nullable = false)
+    @Column
     private String coverImageUrl;
 
     @CreatedDate
