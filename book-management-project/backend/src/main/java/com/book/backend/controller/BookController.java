@@ -37,12 +37,12 @@ public class BookController {
         return ResponseEntity.ok(bookUpdate);
     }
 
-//    //도서 조회
-//    @GetMapping("/{id}")
-//    public ResponseEntity<BookDTO.BookDetail> getBookDetail(@PathVariable Long id) {
-//        BookDTO.BookDetail bookDetail = bookService.bookDetail(id);
-//        return ResponseEntity.ok(bookDetail);
-//    }
+    //도서 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDTO.BookDetail> getBookDetail(@PathVariable Long id) {
+        BookDTO.BookDetail bookDetail = bookService.bookDetail(id);
+        return ResponseEntity.ok(bookDetail);
+    }
 
     @GetMapping
     public ResponseEntity<List<BookDTO.BookList>> bookList() {
