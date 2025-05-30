@@ -30,11 +30,22 @@ function BookUpdate() {
   };
 
   const handleSubmit = () => {
-    axios
-      .put(`http://localhost:8080/api/books/${id}`, formData)
-      .then(() => navigate(`/detail/${id}`))
-      .catch((err) => console.error('수정 실패:', err));
-  };
+  if (!formData.title.trim() || !formData.content.trim()) {
+    alert("제목과 내용을 입력해주세요.");
+    return;
+  }
+
+  axios
+    .patch(`http://localhost:8080/api/books/${id}`, formData)
+    .then(() => {
+      alert('수정 완료!');
+      navigate(`/detail/${id}`);
+    })
+    .catch((err) => {
+      console.error('수정 실패:', err);
+      alert('수정 실패');
+    });
+};
 
   return (
     <div className="main-container">
