@@ -1,41 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Typography, Container, Grid, Box, Button } from '@mui/material';
 import BookCard from '../Components/BookCard';
+import './BookList.css'; // CSS 분리
 
 function BookList() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/books")
-            .then((res) => {
-                console.log("응답 데이터:", res.data);
-                setBooks(res.data);
-            })
-            .catch((err) => {
-                console.error("백엔드 연결 실패:", err);
-            });
-        }, []);
+        axios.get('http://localhost:8080/api/books')
+            .then((res) => setBooks(res.data))
+            .catch((err) => console.error('백엔드 연결 실패:', err));
+    }, []);
 
     return (
-        <Container>
-            <Typography variant="h4" align="center" gutterBottom>작가의 산책</Typography>
+        <div className="main-container">
+            <h1 className="title">작가의 산책</h1>
 
-            <Grid container spacing={2} justifyContent="center">
+            <div className="card-list">
                 {books.map((book, i) => (
-                    <Grid item key={i}>
-                        <BookCard title={book.title} />
-                    </Grid>
+                    <div className="placeholder-card" key={i} />
                 ))}
-            </Grid>
+            </div>
 
-            <Box mt={4} display="flex" justifyContent="center" gap={2}>
-                <Button variant="outlined">도서 등록</Button>
-                <Button variant="outlined">도서 조회</Button>
-                <Button variant="outlined">표지 등록</Button>
-                <Button variant="outlined" color="error">도서 삭제</Button>
-            </Box>
-        </Container>
+            <div className="button-group">
+                <button>도서 등록</button>
+                <button>도서 조회</button>
+                <button>표지 등록</button>
+                <button className="danger">도서 삭제</button>
+            </div>
+        </div>
     );
 }
 
