@@ -73,33 +73,66 @@ function BookList() {
                             <Grid item xs={12} sm={6} md={4} key={book.id}>
                                 <Card
                                     sx={{
+                                    height: 250, // 카드 높이 고정
+                                    width: 200,
+                                    display: 'flex', // Flex 컨테이너로 설정
+                                    flexDirection: 'column', // 수직 정렬
+                                    justifyContent: 'space-between', // 공간 균등 분배
                                     border: selectedBookId === book.id ? '2px solid #1976d2' : '1px solid #e0e0e0',
                                     boxShadow: selectedBookId === book.id ? '0 4px 20px rgba(25, 118, 210, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)',
                                     transition: 'all 0.3s',
                                     backgroundColor: selectedBookId === book.id ? '#e3f2fd' : '#fff',
                                     cursor: 'pointer',
-                                    '&:hover': {
-                                        boxShadow: '0 4px 20px rgba(25, 118, 210, 0.3)',
-                                    },
+                                        '&:hover': {
+                                            boxShadow: '0 4px 20px rgba(25, 118, 210, 0.3)',
+                                        },
                                     }}
                                 >
-                                    <CardContent>
-                                    <Stack direction="row" alignItems="center" spacing={1}>
-                                        <Checkbox
-                                        checked={selectedBookId === book.id}
-                                        onChange={() => handleCheck(book.id)}
-                                        onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
+                                    {book.thumbnailUrl ? (
+                                        <Box
+                                            component="img"
+                                            src={book.thumbnailUrl}
+                                            alt={book.title}
+                                            sx={{
+                                            width: '100%',
+                                            height: 140,
+                                            objectFit: 'cover', // 이미지 비율 유지
+                                            }}
                                         />
-                                        <Box>
-                                        <Typography variant="h6">{book.title}</Typography>
-                                        <Typography variant="body2" color="text.secondary">{book.content}</Typography>
+                                        ) : (
+                                        <Box
+                                            sx={{
+                                            width: '100%',
+                                            height: 140,
+                                            backgroundColor: '#f0f0f0', // 비어있을 때 색상
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#aaa',
+                                            fontSize: 14,
+                                            }}
+                                        >
+                                            이미지 없음
                                         </Box>
-                                    </Stack>
+                                        )}
+                                    <CardContent sx={{ flexGrow: 1 }}>
+                                        <Stack direction="row" alignItems="center" spacing={1}>
+                                            <Checkbox
+                                            checked={selectedBookId === book.id}
+                                            onChange={() => handleCheck(book.id)}
+                                            onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
+                                            />
+                                            <Box>
+                                                <Typography variant="h6" noWrap>{book.title}</Typography>
+                                                <Typography variant="body2" color="text.secondary" noWrap>{book.content}</Typography>
+                                            </Box>
+                                        </Stack>
                                     </CardContent>
                                 </Card>
                             </Grid>
                         ))}
                     </Grid>
+
 
 
                     <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
