@@ -4,16 +4,16 @@ import axios from 'axios';
 import HomeButton from '../Components/HomeButton';
 import theme from './theme.ts';
 import { ThemeProvider } from '@emotion/react';
-import { 
-  Button, 
-  Typography, 
-  Card, 
-  CardContent, 
-  Container, 
-  Box, 
-  Stack, 
-  Grid, 
-  Checkbox 
+import {
+  Button,
+  Typography,
+  Card,
+  CardContent,
+  Container,
+  Box,
+  Stack,
+  Grid,
+  Checkbox
 } from '@mui/material';
 
 function BookList() {
@@ -88,45 +88,18 @@ function BookList() {
                                         },
                                     }}
                                 >
-                                    {book.thumbnailUrl ? (
-                                        <Box
-                                            component="img"
-                                            src={book.thumbnailUrl}
-                                            alt={book.title}
-                                            sx={{
-                                            width: '100%',
-                                            height: 140,
-                                            objectFit: 'cover', // 이미지 비율 유지
-                                            }}
+                                    <CardContent>
+                                    <Stack direction="row" alignItems="center" spacing={1}>
+                                        <Checkbox
+                                        checked={selectedBookId === book.id}
+                                        onChange={() => handleCheck(book.id)}
+                                        onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
                                         />
-                                        ) : (
-                                        <Box
-                                            sx={{
-                                            width: '100%',
-                                            height: 140,
-                                            backgroundColor: '#f0f0f0', // 비어있을 때 색상
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            color: '#aaa',
-                                            fontSize: 14,
-                                            }}
-                                        >
-                                            이미지 없음
+                                        <Box>
+                                        <Typography variant="h6">{book.title}</Typography>
+                                        <Typography variant="body2" color="text.secondary">{book.content}</Typography>
                                         </Box>
-                                        )}
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Stack direction="row" alignItems="center" spacing={1}>
-                                            <Checkbox
-                                            checked={selectedBookId === book.id}
-                                            onChange={() => handleCheck(book.id)}
-                                            onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
-                                            />
-                                            <Box>
-                                                <Typography variant="h6" noWrap>{book.title}</Typography>
-                                                <Typography variant="body2" color="text.secondary" noWrap>{book.content}</Typography>
-                                            </Box>
-                                        </Stack>
+                                    </Stack>
                                     </CardContent>
                                 </Card>
                             </Grid>
