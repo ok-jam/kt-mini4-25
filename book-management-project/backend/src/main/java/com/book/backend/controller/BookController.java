@@ -7,14 +7,76 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.book.backend.domain.Book;
+import com.book.backend.dto.BookDTO;
+import com.book.backend.service.BookService;
+import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/books")
+@RequiredArgsConstructor
 public class BookController {
 
-    @GetMapping
-    public List<String> getBooks() {
-        return List.of("도서 1", "도서 2", "도서 3");
+    public final BookService bookService;
+
+//    @GetMapping
+//    public List<String> getBooks() {
+//        return List.of("도서 1", "도서 2", "도서 3");
+//    }
+
+    // 도서 등록
+    @PostMapping
+    public ResponseEntity<Book> bookRegist(@RequestBody BookDTO.BookRegist dto) {
+        Book bookRegist = bookService.bookRegist(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookRegist);
     }
+
+    // 도서 목록 조회
+    @GetMapping
+    public ResponseEntity<List<BookDTO.BookList>> bookList() {
+        List<BookDTO.BookList> books = bookService.bookList();
+        return ResponseEntity.ok(books);
+    }
+
+//    도서 정보 수정
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<Book> bookUpdate(@PathVariable Long id, @RequestBody BookDTO.BookUpdate dto) {
+//        Book bookUpdate = bookService.bookUpdate(id, dto);
+//        return ResponseEntity.ok(bookUpdate);
+//    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookDTO.BookList> bookUpdate(@PathVariable Long id,
+                                                       @RequestBody BookDTO.BookUpdate dto) {
+        Book updated = bookService.bookUpdate(id, dto);
+        return ResponseEntity.ok(new BookDTO.BookList(
+                updated.getId(),
+                updated.getTitle(),
+                updated.getContent(),
+                updated.getCoverImageUrl(),
+                updated.getCreatedAt(),
+                updated.getUpdatedAt()
+        ));
+    }
+
+    // 도서 삭제
+
+
+    // 도서 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDTO.BookDetail> bookDetail(@PathVariable Long id) {
+        BookDTO.BookDetail bookDetail = bookService.bookDetail(id);
+        return ResponseEntity.ok(bookDetail);
+    }
+
+
+    // 표지 등록
+
 }
