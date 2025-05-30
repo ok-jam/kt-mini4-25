@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "",  // 백엔드 API 주소
+  baseURL: "https://localhost:8080/api/books",  // 백엔드 API 주소
   timeout: 5000,
 });
 
