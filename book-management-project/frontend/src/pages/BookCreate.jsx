@@ -2,24 +2,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, TextField, Button, Paper } from '@mui/material';
-import HomeButton from '../Components/HomeButton';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  TextField,
+  Button,
+  Grid,
+  IconButton,
+  ThemeProvider,
+  CssBaseline,
+} from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import theme from './theme.ts';
+
+
 function BookCreate() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    // ✅ 유효성 검사 추가
     if (!title.trim() || !content.trim()) {
       alert('제목과 내용을 모두 입력해주세요.');
       return;
     }
+
     try {
-      await axios.post('http://localhost:8080/api/books', {
-        title,
-        content
-      });
+      await axios.post('http://localhost:8080/api/books', { title, content });
       alert('도서가 등록되었습니다.');
       navigate('/');
     } catch (error) {
@@ -29,45 +40,91 @@ function BookCreate() {
   };
 
   return (
-    
-    <Box sx={{ maxWidth: 500, mx: 'auto', mt: 5 }}>
-      <Paper sx={{ p: 3 }}>
-        <div><HomeButton/></div>
-        <Typography variant="h5" component="h1" align="center" gutterBottom>
-          📚 도서 등록
-        </Typography>
-        <Box component="form" noValidate autoComplete="off">
-          <TextField
-            label="제목"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <TextField
-            label="내용"
-            variant="outlined"
-            fullWidth
-            multiline
-            rows={4}
-            margin="normal"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{ mt: 2 }}
-            onClick={handleRegister}
-          >
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar position="static" sx={{ backgroundColor: '#F7DADB', boxShadow: 0 }}>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" onClick={() => navigate('/')}>
+            <HomeIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ color: '#333' }}>
+            작가의 산책
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Box
+        sx={{
+          minHeight: '100vh',
+          backgroundColor: '#f9f9f9',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          p: 3,
+        }}
+      >
+        <Box
+          sx={{
+            p: 0,
+            width: '100%',
+            maxWidth: 'none',
+            borderRadius: '40px',
+            backgroundColor: 'transparent',
+            boxShadow: 0,
+            borderRadius:0,
+          }}
+        >
+          <Typography variant="h5" align="center" sx={{ fontWeight: 'bold', mb: 4, textDecoration: 'underline' }}>
             도서 등록
-          </Button>
+          </Typography>
+
+          <Grid container spacing={3} direction="column">
+            <Grid item>
+              <Typography sx={{ fontWeight: 'bold', mb: 1 }}>[제목]</Typography>
+              <TextField
+                placeholder="제목을 입력해주세요"
+                fullWidth
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item>
+              <Typography sx={{ fontWeight: 'bold', mb: 1 }}>[내용]</Typography>
+              <TextField
+                placeholder="내용을 입력해주세요"
+                multiline
+                minRows={6}
+                fullWidth
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </Grid>
+
+            <Grid item sx={{ textAlign: 'right' }}>
+              <Button
+                variant="contained"
+                onClick={handleRegister}
+                sx={{
+                backgroundColor: '#F7DADB',
+                color: '#000',
+                '&:hover': {
+                  backgroundColor: '#e6caca',
+                  },
+                px: 4,
+                py: 1,
+                borderRadius: 2,
+                fontWeight: 'bold',
+                }}
+              >
+                도서 등록
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
-      </Paper>
-    </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 
-export default BookCreate;
+export default BookCreate; 

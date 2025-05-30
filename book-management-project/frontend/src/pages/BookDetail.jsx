@@ -1,9 +1,19 @@
-// BookDetail.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './BookList.css'; 
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Grid,
+  Button,
+} from '@mui/material';
 import HomeButton from '../Components/HomeButton';
+import theme from './theme.ts';
+import { ThemeProvider } from '@mui/material/styles';
+
+
 function BookDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -16,42 +26,61 @@ function BookDetail() {
       .catch((err) => console.error('도서 불러오기 실패:', err));
   }, [id]);
 
-  if (!book) return <div className="main-container">불러오는 중...</div>;
+  if (!book) return <div>불러오는 중...</div>;
 
   return (
-    <div className="main-container">
-      <HomeButton/>
-      <h1 className="title">정보 조회</h1>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md" sx={{ mt: 5 }}>
+        <HomeButton />
+        
+        <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
+          정보 조회
+        </Typography>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <div style={{ marginBottom: '1rem' }}>
-          <strong>제목:</strong>
-          <div>{book.title}</div>
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <strong>내용:</strong>
-          <div>{book.content}</div>
-        </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <strong>등록일:</strong>
-          <div>{book.createdAt}</div>
-        </div>
-        {book.updatedAt && (
-          <div style={{ marginBottom: '1rem' }}>
-            <strong>수정일:</strong>
-            <div>{book.updatedAt}</div>
-          </div>
-        )}
-      </div>
+        <Box component="form" noValidate autoComplete="off" sx={{ mt: 3 }}>
+          <TextField
+            label="제목"
+            value={book.title}
+            fullWidth
+            margin="normal"
+            InputProps={{ readOnly: true }}
+          />
+          <TextField
+            label="내용"
+            value={book.content}
+            fullWidth
+            margin="normal"
+            multiline
+            rows={5}
+            inputProps={{ readOnly: true }}
+          />
+          <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
+            <TextField
+              label="등록일"
+              value={book.createdAt}
+              fullWidth
+              inputProps={{ readOnly: true }}
+            />
+            <TextField
+              label="수정일"
+              value={book.updatedAt || ''}
+              fullWidth
+              inputProps={{ readOnly: true }}
+            />
+          </Box>
 
-      <div className="button-group">
-        <button onClick={() => navigate(`/update/${id}`)}>정보 수정</button>
-        <button className="danger" onClick={() => navigate('/')}>취소</button>
-      </div>
-    </div>
+          <Box mt={3} display="flex" justifyContent="space-between">
+            <Button variant="outlined" onClick={() => navigate(`/update/${id}`)} sx={{color:'black'}}>
+              정보 수정
+            </Button>
+            <Button variant="outlined" color="error" onClick={() => navigate('/')} >
+              취소
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
 
 export default BookDetail;
-
-
