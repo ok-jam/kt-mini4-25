@@ -9,6 +9,8 @@ function App() {
       <Routes>
         <Route path="/" element={<BookList />} />
         <Route path="/create" element={<BookCreate />} />
+        <Route path="/detail/:id" element={<BookDetail />} />
+        <Route path="/update/:id" element={<BookUpdate />} />
       </Routes>
     </Router>
   );
