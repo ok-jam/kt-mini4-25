@@ -30,20 +30,6 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookRegist);
     }
 
-    //도서 수정
-    @PatchMapping("/{id}")
-    public ResponseEntity<Book> bookUpdate(@PathVariable Long id, @RequestBody BookDTO.BookUpdate dto) {
-        Book bookUpdate = bookService.bookUpdate(id, dto);
-        return ResponseEntity.ok(bookUpdate);
-    }
-
-    //도서 조회
-    @GetMapping("/{id}")
-    public ResponseEntity<BookDTO.BookDetail> getBookDetail(@PathVariable Long id) {
-        BookDTO.BookDetail bookDetail = bookService.bookDetail(id);
-        return ResponseEntity.ok(bookDetail);
-    }
-
     // 도서 목록 조회
     @GetMapping
     public ResponseEntity<List<BookDTO.BookList>> bookList() {
@@ -51,10 +37,16 @@ public class BookController {
         return ResponseEntity.ok(books);
     }
 
-    // 도서 정보 수정
+//    도서 정보 수정
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<Book> bookUpdate(@PathVariable Long id, @RequestBody BookDTO.BookUpdate dto) {
+//        Book bookUpdate = bookService.bookUpdate(id, dto);
+//        return ResponseEntity.ok(bookUpdate);
+//    }
+
     @PatchMapping("/{id}")
     public ResponseEntity<BookDTO.BookList> bookUpdate(@PathVariable Long id,
-                                           @RequestBody BookDTO.BookUpdate dto) {
+                                                       @RequestBody BookDTO.BookUpdate dto) {
         Book updated = bookService.bookUpdate(id, dto);
         return ResponseEntity.ok(new BookDTO.BookList(
                 updated.getId(),
@@ -68,7 +60,15 @@ public class BookController {
 
     // 도서 삭제
 
+
     // 도서 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDTO.BookDetail> bookDetail(@PathVariable Long id) {
+        BookDTO.BookDetail bookDetail = bookService.bookDetail(id);
+        return ResponseEntity.ok(bookDetail);
+    }
+
 
     // 표지 등록
+
 }
