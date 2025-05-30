@@ -92,6 +92,13 @@ function BookList() {
                                         />
                                         <Box>
                                         <Typography variant="h6">{book.title}</Typography>
+                                        <img
+        src={book.coverImageUrl || 'https://via.placeholder.com/100'}
+        alt="표지"
+        width={100}
+        height={140}
+        style={{ objectFit: 'cover', margin: '10px 0' }}
+      />
                                         <Typography variant="body2" color="text.secondary">{book.content}</Typography>
                                         </Box>
                                     </Stack>
