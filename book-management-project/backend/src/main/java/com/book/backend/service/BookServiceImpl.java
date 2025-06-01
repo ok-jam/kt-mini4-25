@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    private final ImageService imageService;
 
     @Override
     public Book bookRegist(BookDTO.BookRegist dto) {
@@ -36,10 +37,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public String bookCover(Long id) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("책이 없습니다."));
-        String coverUrl = ImageService.generatedCoverFor(book);
-        book.setCoverImageUrl(coverUrl);
-        bookRepository.save(book);
-        return coverUrl;
+
+        try {
+            String coverUrl = imageService.generateImageAndSaveToLocal(book);
+            String fullUrl = "http://localhost:8080" + coverUrl;
+            book.setCoverImageUrl(fullUrl);
+            bookRepository.save(book);
+            return coverUrl;
+        } catch (Exception e) {
+            throw new RuntimeException("커버 생성 실패", e);
+        }
     }
 
     @Override

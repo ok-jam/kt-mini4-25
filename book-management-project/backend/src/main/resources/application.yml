@@ -1,3 +1,7 @@
+openai:
+  api:
+    key: 여기에 OpenAI API key 입력
+
 spring:
   datasource:
     driver-class-name: org.h2.Driver
