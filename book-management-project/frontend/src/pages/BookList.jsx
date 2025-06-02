@@ -183,7 +183,15 @@ function BookList() {
 
                         <Button variant="outlined" color="error" onClick={handleDelete}>도서 삭제</Button>
                     </Stack>
-                    <Dialog open={isDialogOpen} onClose={handleDialogCancel}>
+                    <Dialog open={isDialogOpen} onClose={handleDialogCancel}
+                        maxWidth="sm"
+                        fullWidth
+                        sx={{
+                            '& .MuiDialog-paper': { 
+                                width: '600px',
+                                maxHeight: '80vh'
+                            } 
+                        }}>
                         <DialogTitle>표지 생성 설명 입력</DialogTitle>
                         <DialogContent>
                             <TextField
@@ -198,8 +206,8 @@ function BookList() {
                             />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleDialogCancel}>취소</Button>
                             <Button variant="contained" onClick={handleDialogConfirm}>확인</Button>
+                            <Button variant="contained" onClick={handleDialogCancel}>취소</Button>
                         </DialogActions>
                     </Dialog>
                 </Box>
