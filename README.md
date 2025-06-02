@@ -17,15 +17,15 @@
 
 ## 👥 팀원 소개
 
-| 역할 | 이름 |
-|------|------|
-| 🧠 PM | 김민욱 |
-| 🎨 프론트엔드 | 최가영, 진예나, 김예지 |
-| 🔧 백엔드 | 정민수, 이태현, 한정민 |
-| 📝 서기 | 진예나, 김예지 |
-| ✔️ 검토 | 최가영 |
-| 🧾 발표 | 한정민 |
-| 📊 PPT 제작 | 이태현, 정민수 |
+| <img src="https://github.com/ok-jam.png" width="100"/> | <img src="https://github.com/minsu-jeong123.png" width="100"/> | <img src="https://github.com/hamiz4310.png" width="100"/> | <img src="https://github.com/thlee17.png" width="100"/> |
+|:--:|:--:|:--:|:--:|
+| **김민욱**<br/>🧠 PM / 백엔드 | **정민수**<br/>🔧 PPT / 백엔드 | **한정민**<br/>🗣 발표 / 백엔드 | **이태현**<br/>🔧 PPT / 백엔드 |
+| [ok-jam](https://github.com/ok-jam) | [minsu-jeong123](https://github.com/minsu-jeong123) | [hamiz4310](https://github.com/hamiz4310) | [thlee17](https://github.com/thlee17) |
+
+| <img src="https://github.com/gayomiiiii.png" width="100"/> | <img src="https://github.com/jinyena.png" width="100"/> | <img src="https://github.com/wngoEk.png" width="100"/> |
+|:--:|:--:|:--:|
+| **최가영**<br/>🎨 검토 / 프론트엔드 | **진예나**<br/>🎨 서기 / 프론트엔드 | **김예지**<br/>🎨 서기 / 프론트엔드 |
+| [gayomiiiii](https://github.com/gayomiiiii) | [jinyena](https://github.com/jinyena) | [wngoEk](https://github.com/wngoEk) |
 
 ---
 
@@ -54,7 +54,8 @@
 ---
 
 ## 📁 프로젝트 구조
-📦 book-management-project/
+<pre>
+book-management-project/
 ├── backend/
 │   ├── build/
 │   ├── gradle/
@@ -78,6 +79,8 @@
 ├── .git/
 ├── .idea/
 └── README.md
+</pre>
+
 
 ---
 
