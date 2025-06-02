@@ -49,6 +49,7 @@ public class ImageService {
 
         // 1. OpenAI API 호출
         Map<String, Object> request = Map.of(
+                "model", "dall-e-3",
                 "prompt", "A book cover for: " + book.getTitle(),
                 "n", 1,
                 "size", "1024x1024",
