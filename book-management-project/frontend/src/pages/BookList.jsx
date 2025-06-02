@@ -59,6 +59,23 @@ function BookList() {
         setSelectedBookId((prev) => (prev === bookId ? null : bookId));
     };
 
+    // 표지 생성 추가
+    const handleGenerateCover = () => {
+        if (!selectedBookId) {
+            alert("표지를 생성할 도서를 선택해주세요.");
+            return;
+        }
+        axios.post(`http://localhost:8080/api/books/${selectedBookId}/generate-cover`)
+            .then((res) => {
+                alert('표지가 생성되었습니다.');
+                fetchBooks();
+            })
+            .catch((err) => {
+                console.error('표지 생성 실패:', err);
+                alert('표지 생성 실패');
+            });
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
@@ -139,7 +156,8 @@ function BookList() {
                     <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
                         <Button variant="contained" onClick={() => navigate('/create')}>도서 등록</Button>
                         <Button variant="contained" onClick={handleView}>도서 조회</Button>
-                        <Button variant="contained">표지 등록</Button>
+                        <Button variant="contained" onClick={handleGenerateCover}>표지 등록</Button>
+
                         <Button variant="contained" color="error" onClick={handleDelete}>도서 삭제</Button>
                     </Stack>
                 </Box>
