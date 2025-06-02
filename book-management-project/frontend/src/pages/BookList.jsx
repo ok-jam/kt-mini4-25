@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import HomeButton from '../Components/HomeButton';
+// import HomeButton from '../Components/HomeButton';
 import theme from './theme.ts';
 import { ThemeProvider } from '@emotion/react';
 import {
@@ -13,7 +13,7 @@ import {
   Box,
   Stack,
   Grid,
-  Checkbox,
+  // Checkbox,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -142,7 +142,8 @@ function BookList() {
                                     {book.coverImageUrl ? (
                                         <Box
                                             component="img"
-                                            src={book.coverImageUrl}
+                                            // src={book.coverImageUrl} 표지 변경 가능하게
+                                            src={`${book.coverImageUrl}?ts=${Date.now()}`}
                                             alt={book.title}
                                             sx={{
                                             width: '100%',
