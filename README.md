@@ -111,9 +111,12 @@ book-management-project/
 - 확인(alert) 후 `DELETE /api/books/:id` 호출로 삭제
 
 ### 🤖 표지 생성
-- 내용
-- 추가
-- 예정
+- `TextField`로 추가 설명(prompt) 입력
+- `axios.post()`를 통해 `/api/books/{id}/generate-cover`로 데이터 전송 (JSON { prompt: 내용 })
+- `BookController`의 `@PostMapping("/{id}/generate-cover")`에서 요청 처리
+- `BookService`의 `bookCover(id, prompt)` 호출
+- 해당 도서를 조회하고 `DALL-E3 API`에 제목/내용/추가 설명 전달해 이미지 생성
+- API 응답으로 커버 `이미지 URL` 수신
 
 ### 🏠 홈 이동
 - 상단 `AppBar`에 Home 버튼 추가 → `/`로 navigate
