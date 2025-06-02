@@ -45,12 +45,22 @@ public class ImageService {
                 .build();
     }
 
-    public String generateImageAndSaveToLocal(Book book) throws IOException {
+    public String generateImageAndSaveToLocal(Book book, String userPrompt) throws IOException {
+
+        String basePrompt = String.format(
+            "Create a book cover for a book titled \"%s\" with the content: \"%s\".",
+            book.getTitle(),
+            book.getContent()
+        );
+
+        String finalPrompt = (userPrompt != null && !userPrompt.isEmpty())
+            ? basePrompt + " " + userPrompt
+            : basePrompt;
 
         // 1. OpenAI API 호출
         Map<String, Object> request = Map.of(
                 "model", "dall-e-3",
-                "prompt", "A book cover for: " + book.getTitle(),
+                "prompt", finalPrompt,
                 "n", 1,
                 "size", "1024x1024",
                 "response_format", "b64_json"

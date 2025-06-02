@@ -13,13 +13,21 @@ import {
   Box,
   Stack,
   Grid,
-  Checkbox
+  Checkbox,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField
 } from '@mui/material';
 
 function BookList() {
     const [books, setBooks] = useState([]);
     const [selectedBookId, setSelectedBookId] = useState(null);
     const navigate = useNavigate();
+
+    const [isDialogOpen, setIsDialogOpen] = useState(false); // 모달 열림 상태
+    const [promptText, setPromptText] = useState('');
 
     useEffect(() => {
         fetchBooks();
@@ -65,15 +73,30 @@ function BookList() {
             alert("표지를 생성할 도서를 선택해주세요.");
             return;
         }
-        axios.post(`http://localhost:8080/api/books/${selectedBookId}/generate-cover`)
-            .then((res) => {
+        setPromptText('');
+        setIsDialogOpen(true);
+    };
+
+    const handleDialogConfirm = () => {
+        if (!promptText.trim()) {
+            alert('표지 생성 설명을 입력하세요.');
+            return;
+        }
+        axios.post(`http://localhost:8080/api/books/${selectedBookId}/generate-cover`, { prompt: promptText })
+            .then(() => {
                 alert('표지가 생성되었습니다.');
                 fetchBooks();
+                setIsDialogOpen(false);
             })
             .catch((err) => {
                 console.error('표지 생성 실패:', err);
                 alert('표지 생성 실패');
             });
+    };
+
+    // 모달 취소 버튼 클릭
+    const handleDialogCancel = () => {
+        setIsDialogOpen(false);
     };
 
     return (
@@ -144,6 +167,7 @@ function BookList() {
                                         <Typography variant="body2" color="text.secondary">{book.content}</Typography>
                                         </Box>
                                     </Stack>
+
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -159,6 +183,25 @@ function BookList() {
 
                         <Button variant="outlined" color="error" onClick={handleDelete}>도서 삭제</Button>
                     </Stack>
+                    <Dialog open={isDialogOpen} onClose={handleDialogCancel}>
+                        <DialogTitle>표지 생성 설명 입력</DialogTitle>
+                        <DialogContent>
+                            <TextField
+                                autoFocus
+                                multiline
+                                minRows={4}
+                                fullWidth
+                                variant="outlined"
+                                value={promptText}
+                                onChange={(e) => setPromptText(e.target.value)}
+                                placeholder="표지 생성에 대한 설명을 입력하세요."
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleDialogCancel}>취소</Button>
+                            <Button variant="contained" onClick={handleDialogConfirm}>확인</Button>
+                        </DialogActions>
+                    </Dialog>
                 </Box>
             </Container>
         </ThemeProvider>

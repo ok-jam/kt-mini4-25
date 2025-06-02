@@ -67,4 +67,13 @@ public class BookDTO {
         private Long id;
         private String coverImageUrl;
     }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class BookCoverRequest {
+        private String prompt;
+    }
+
 }

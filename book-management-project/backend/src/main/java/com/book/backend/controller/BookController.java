@@ -21,6 +21,8 @@ import com.book.backend.service.ImageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
@@ -74,8 +76,10 @@ public class BookController {
 
     // 표지 등록
     @PostMapping("/{id}/generate-cover")
-    public ResponseEntity<String> bookCover(@PathVariable Long id) {
-        String url = bookService.bookCover(id);
-        return ResponseEntity.ok(url);
+    public ResponseEntity<String> bookCover(
+        @PathVariable Long id,
+        @RequestBody BookDTO.BookCoverRequest request) {  // @RequestParam -> @RequestBody + DTO
+            String url = bookService.bookCover(id, request.getPrompt());
+            return ResponseEntity.ok(url);
     }
 }

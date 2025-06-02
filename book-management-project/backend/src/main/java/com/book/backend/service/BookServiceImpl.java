@@ -35,11 +35,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String bookCover(Long id) {
+    public String bookCover(Long id, String prompt) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("책이 없습니다."));
 
         try {
-            String coverUrl = imageService.generateImageAndSaveToLocal(book);
+            String coverUrl = imageService.generateImageAndSaveToLocal(book, prompt);
             String fullUrl = "http://localhost:8080" + coverUrl;
             book.setCoverImageUrl(fullUrl);
             bookRepository.save(book);
