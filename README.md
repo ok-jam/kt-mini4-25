@@ -1,8 +1,8 @@
-# KT Aivle School mini-project 4
+<h1 align="center"> KT Aivle School mini-project 4</h1>
 
 ## 프로젝트 소개
-작가의 산책 - 도서 관리 시스템 개발
-도서를 등록/조회/수정/삭제할 수 있는 웹 기반 도서 관리 애플리케이션 개발 (프론트엔드, 백엔드)
+작가의 산책은 도서를 등록, 조회, 수정, 삭제할 수 있는 웹 기반 도서 관리 시스템입니다.
+React와 Spring Boot 기반으로 구현되었으며, 사용자 친화적인 인터페이스와 RESTful API를 제공합니다.
 
 ## 팀원 소개
 | 팀원                  | 개발 담당          | 역할                    |
