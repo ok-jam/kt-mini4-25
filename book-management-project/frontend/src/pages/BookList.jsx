@@ -21,6 +21,8 @@ import {
   TextField
 } from '@mui/material';
 
+import CircularProgress from '@mui/material/CircularProgress';
+
 function BookList() {
     const [books, setBooks] = useState([]);
     const [selectedBookId, setSelectedBookId] = useState(null);
@@ -28,6 +30,9 @@ function BookList() {
 
     const [isDialogOpen, setIsDialogOpen] = useState(false); // 모달 열림 상태
     const [promptText, setPromptText] = useState('');
+
+    const [isGenerating, setIsGenerating] = useState(false);
+
 
     useEffect(() => {
         fetchBooks();
@@ -82,6 +87,9 @@ function BookList() {
             alert('표지 생성 설명을 입력하세요.');
             return;
         }
+
+        setIsGenerating(true);
+
         axios.post(`http://localhost:8080/api/books/${selectedBookId}/generate-cover`, { prompt: promptText })
             .then(() => {
                 alert('표지가 생성되었습니다.');
@@ -91,6 +99,9 @@ function BookList() {
             .catch((err) => {
                 console.error('표지 생성 실패:', err);
                 alert('표지 생성 실패');
+            })
+            .finally(() => {
+                setIsGenerating(false);
             });
     };
 
@@ -206,7 +217,9 @@ function BookList() {
                             />
                         </DialogContent>
                         <DialogActions>
-                            <Button variant="contained" onClick={handleDialogConfirm}>확인</Button>
+                            <Button variant="contained" onClick={handleDialogConfirm} disable={isGenerating}>
+                                {isGenerating ? <CircularProgress size={20} /> : '확인'}
+                            </Button>
                             <Button variant="contained" onClick={handleDialogCancel}>취소</Button>
                         </DialogActions>
                     </Dialog>
