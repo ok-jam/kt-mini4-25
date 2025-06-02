@@ -73,7 +73,7 @@ function BookUpdate() {
       </AppBar>
 
       <Container maxWidth="md" sx={{ mt: 5 }}>
-        <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
+        <Typography variant="h5" align="center" sx={{ fontWeight: 'bold', mb: 4, textDecoration: 'underline' }}>
           정보 수정
         </Typography>
 
