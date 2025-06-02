@@ -15,6 +15,20 @@
 
 ---
 
+## 👥 팀원 소개
+
+| 역할 | 이름 |
+|------|------|
+| 🧠 PM | 김민욱 |
+| 🎨 프론트엔드 | 최가영, 진예나, 김예지 |
+| 🔧 백엔드 | 정민수, 이태현, 한정민 |
+| 📝 서기 | 진예나, 김예지 |
+| ✔️ 검토 | 최가영 |
+| 🧾 발표 | 한정민 |
+| 📊 PPT 제작 | 이태현, 정민수 |
+
+---
+
 ## 🔧 사용 기술 스택
 
 ### 🔹 Frontend
@@ -41,65 +55,63 @@
 
 ## 📁 프로젝트 구조
 📦 book-management-project/
-├── backend/                # 백엔드(Spring Boot)
-│   ├── build/              
-│   ├── gradle/             
-│   ├── src/                
-│   ├── .gitignore
+├── backend/
+│   ├── build/
+│   ├── gradle/
+│   ├── src/
 │   ├── build.gradle
-│   ├── gradlew / gradlew.bat
-│   └── settings.gradle
-│
-├── frontend/               # 프론트엔드(React)
-│   ├── node_modules/       
-│   ├── public/             
-│   ├── src/                
+│   ├── settings.gradle
+│   ├── gradlew
+│   ├── gradlew.bat
 │   ├── .gitignore
-│   ├── package.json        
-│   ├── yarn.lock           
-│   └── README.md          
+│   └── .gitattributes
 │
-├── .git/                  
-├── .idea/                 
-└── README.md               
+├── frontend/
+│   ├── node_modules/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── yarn.lock
+│   ├── .gitignore
+│   └── README.md
+│
+├── .git/
+├── .idea/
+└── README.md
 
 ---
 
-## 🧩 주요 기능
+## 🔍 주요 기능 구현 방식
 
-| 기능 | 설명 |
-|------|------|
-| 도서 등록 | 제목과 내용을 입력하여 새로운 도서 추가 |
-| 도서 조회 | 목록 페이지에서 도서 리스트 확인 |
-| 도서 상세 | 특정 도서 클릭 시 상세 내용 확인 |
-| 도서 수정 | 기존 도서 정보 수정 가능 |
-| 도서 삭제 | 도서 선택 후 삭제 |
-| 홈 이동 | 홈 버튼을 통해 메인 페이지 이동 |
+### 📘 도서 등록
+- `/create` 페이지에서 `TextField`로 제목/내용 입력
+- `axios.post()`를 통해 `/api/books`로 데이터 전송
+- 백엔드는 `@PostMapping`으로 처리, DTO → Entity 매핑 후 DB 저장
+
+### 📖 도서 목록 조회
+- 메인 페이지(`/`) 진입 시 `axios.get()`으로 전체 도서 요청
+- MUI의 `Card` 컴포넌트로 도서 카드 리스트 출력
+- 표지 없을 경우 회색 박스 대체 이미지로 처리
+
+### 📄 도서 상세 조회
+- `/detail/:id` 경로로 접근 시 해당 도서 ID로 API 호출
+- `useParams()`로 ID 추출 → `axios.get()` 요청
+- 제목, 내용, 작성일, 수정일 등 상세 정보 출력
+
+### ✏️ 도서 수정
+- `/update/:id` 경로에서 기존 정보 불러오기(`GET`)
+- 사용자가 수정 후 저장 시 `PATCH` 요청으로 업데이트 처리
+
+### 🗑 도서 삭제
+- 체크된 도서 1건만 선택 가능
+- 확인(alert) 후 `DELETE /api/books/:id` 호출로 삭제
+
+### 🏠 홈 이동
+- 상단 `AppBar`에 Home 버튼 추가 → `/`로 navigate
+
 
 ---
 
-## 🌐 페이지 라우팅
-
-| 경로 | 설명 |
-|------|------|
-| `/` | 메인(도서 목록) |
-| `/create` | 도서 등록 페이지 |
-| `/detail/:id` | 도서 상세 페이지 |
-| `/update/:id` | 도서 수정 페이지 |
-
----
-
-## 👥 팀원 소개
-
-| 역할 | 이름 |
-|------|------|
-| 🧠 PM | 김민욱 |
-| 🎨 프론트엔드 | 최가영, 진예나, 김예지 |
-| 🔧 백엔드 | 정민수, 이태현, 한정민 |
-| 📝 서기 | 진예나, 김예지 |
-| 📝 검토 | 최가영 |
-| 🧾 발표 | 한정민 |
-| 📊 PPT 제작 | 이태현, 정민수 |
 
 
 
