@@ -58,12 +58,6 @@ public class ImageService {
         Map<String, Object> response = openaiClient.post()
                 .bodyValue(request)
                 .retrieve()
-//                .onStatus(HttpStatusCode::is5xxServerError, clientResponse ->
-//                        clientResponse.bodyToMono(String.class).map(body -> {
-//                            System.err.println("OpenAI API 5xx error: " + body);
-//                            return new RuntimeException("OpenAI API 5xx error: " + body);
-//                        })
-//                )
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
                 .block();
 

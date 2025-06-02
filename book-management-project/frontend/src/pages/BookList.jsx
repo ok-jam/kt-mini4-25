@@ -106,10 +106,10 @@ function BookList() {
                                     }}
                                     onClick={() => handleCheck(book.id)}
                                 >
-                                    {book.thumbnailUrl ? (
+                                    {book.coverImageUrl ? (
                                         <Box
                                             component="img"
-                                            src={book.thumbnailUrl}
+                                            src={book.coverImageUrl}
                                             alt={book.title}
                                             sx={{
                                             width: '100%',
