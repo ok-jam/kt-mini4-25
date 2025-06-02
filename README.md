@@ -22,15 +22,11 @@
 
 ## 👥 팀원 소개
 
-| <img src="https://github.com/ok-jam.png" width="100"/> | <img src="https://github.com/minsu-jeong123.png" width="100"/> | <img src="https://github.com/hamiz4310.png" width="100"/> | <img src="https://github.com/thlee17.png" width="100"/> |
-|:--:|:--:|:--:|:--:|
-| **김민욱**<br/>🧠 PM / 백엔드 | **정민수**<br/>🔧 PPT / 백엔드 | **한정민**<br/>🗣 발표 / 백엔드 | **이태현**<br/>🔧 PPT / 백엔드 |
-| [ok-jam](https://github.com/ok-jam) | [minsu-jeong123](https://github.com/minsu-jeong123) | [hamiz4310](https://github.com/hamiz4310) | [thlee17](https://github.com/thlee17) |
+| <img src="https://github.com/ok-jam.png" width="100"/> | <img src="https://github.com/minsu-jeong123.png" width="100"/> | <img src="https://github.com/hamiz4310.png" width="100"/> | <img src="https://github.com/thlee17.png" width="100"/> | <img src="https://github.com/gayomiiiii.png" width="100"/> | <img src="https://github.com/jinyena.png" width="100"/> | <img src="https://github.com/wngoEk.png" width="100"/> |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **김민욱**<br/> PM / 백엔드 | **정민수**<br/> PPT / 백엔드 | **한정민**<br/> 발표 / 백엔드 | **이태현**<br/> PPT / 백엔드 | **최가영**<br/> 검토 / 프론트엔드 | **진예나**<br/> 서기 / 프론트엔드 | **김예지**<br/> 서기 / 프론트엔드 |
+| [@ok-jam](https://github.com/ok-jam) | [@minsu-jeong123](https://github.com/minsu-jeong123) | [@hamiz4310](https://github.com/hamiz4310) | [@thlee17](https://github.com/thlee17) | [@gayomiiiii](https://github.com/gayomiiiii) | [@jinyena](https://github.com/jinyena) | [@wngoEk](https://github.com/wngoEk) |
 
-| <img src="https://github.com/gayomiiiii.png" width="100"/> | <img src="https://github.com/jinyena.png" width="100"/> | <img src="https://github.com/wngoEk.png" width="100"/> |
-|:--:|:--:|:--:|
-| **최가영**<br/>🎨 검토 / 프론트엔드 | **진예나**<br/>🎨 서기 / 프론트엔드 | **김예지**<br/>🎨 서기 / 프론트엔드 |
-| [gayomiiiii](https://github.com/gayomiiiii) | [jinyena](https://github.com/jinyena) | [wngoEk](https://github.com/wngoEk) |
 
 ---
 
@@ -113,6 +109,11 @@ book-management-project/
 ### 🗑 도서 삭제
 - 체크된 도서 1건만 선택 가능
 - 확인(alert) 후 `DELETE /api/books/:id` 호출로 삭제
+
+### 🤖 표지 생성
+- 내용
+- 추가
+- 예정
 
 ### 🏠 홈 이동
 - 상단 `AppBar`에 Home 버튼 추가 → `/`로 navigate
