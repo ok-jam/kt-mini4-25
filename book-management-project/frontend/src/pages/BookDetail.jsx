@@ -15,7 +15,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import { CssBaseline, AppBar, Toolbar, IconButton } from '@mui/material';
 
-
+// 등록일/수정일 시분초로 변경
+const formatDate = (isoString) => {
+  if (!isoString) return '';
+  const date = new Date(isoString);
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시 ${date.getMinutes()}분`;
+};
 
 function BookDetail() {
   const { id } = useParams();
@@ -70,13 +75,13 @@ function BookDetail() {
           <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
             <TextField
               label="등록일"
-              value={book.createdAt}
+              value={formatDate(book.createdAt)}
               fullWidth
               inputProps={{ readOnly: true }}
             />
             <TextField
               label="수정일"
-              value={book.updatedAt || ''}
+              value={formatDate(book.updatedAt)}
               fullWidth
               inputProps={{ readOnly: true }}
             />

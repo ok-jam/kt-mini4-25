@@ -157,11 +157,11 @@ function BookList() {
                                         )}
                                     <CardContent>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                        <Checkbox
-                                        checked={selectedBookId === book.id}
-                                        onChange={() => handleCheck(book.id)}
-                                        onClick={(e) => e.stopPropagation()} // 클릭 전파 방지
-                                        />
+                                        {/*<Checkbox*/}
+                                        {/*checked={selectedBookId === book.id}*/}
+                                        {/*onChange={() => handleCheck(book.id)}*/}
+                                        {/*onClick={(e) => e.stopPropagation()} // 클릭 전파 방지*/}
+                                        {/*/>*/}
                                         <Box>
                                         <Typography variant="h6">{book.title}</Typography>
                                         <Typography variant="body2" color="text.secondary">{book.content}</Typography>
