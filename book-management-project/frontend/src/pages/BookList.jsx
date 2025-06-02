@@ -80,8 +80,7 @@ function BookList() {
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
                 <Box py={4}>
-                    <HomeButton/>
-                    <Typography variant="h2" gutterBottom>
+                    <Typography variant="h1" gutterBottom sx={{textAlign: "center"}}>
                         작가의 산책
                     </Typography>
 
@@ -158,7 +157,7 @@ function BookList() {
                         <Button variant="contained" onClick={handleView}>도서 조회</Button>
                         <Button variant="contained" onClick={handleGenerateCover}>표지 등록</Button>
 
-                        <Button variant="contained" color="error" onClick={handleDelete}>도서 삭제</Button>
+                        <Button variant="outlined" color="error" onClick={handleDelete}>도서 삭제</Button>
                     </Stack>
                 </Box>
             </Container>
