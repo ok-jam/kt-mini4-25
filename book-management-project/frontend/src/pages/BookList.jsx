@@ -60,6 +60,16 @@ function BookList() {
         }
     };
 
+    const handleDeleteAll = () => {
+        if (window.confirm("모든 도서를 삭제하시겠습니까?")) {
+            axios.delete(`http://localhost:8080/api/books`)
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch((err) => console.error('삭제 실패:', err));
+        }
+    }
+
     const handleView = () => {
         if (!selectedBookId) {
             alert("조회할 도서를 선택해주세요.");
@@ -169,11 +179,6 @@ function BookList() {
                                         )}
                                     <CardContent>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                        {/*<Checkbox*/}
-                                        {/*checked={selectedBookId === book.id}*/}
-                                        {/*onChange={() => handleCheck(book.id)}*/}
-                                        {/*onClick={(e) => e.stopPropagation()} // 클릭 전파 방지*/}
-                                        {/*/>*/}
                                         <Box>
                                         <Typography variant="h6">{book.title}</Typography>
                                         <Typography variant="body2" color="text.secondary">{book.content}</Typography>
@@ -192,8 +197,8 @@ function BookList() {
                         <Button variant="contained" onClick={() => navigate('/create')}>도서 등록</Button>
                         <Button variant="contained" onClick={handleView}>도서 조회</Button>
                         <Button variant="contained" onClick={handleGenerateCover}>표지 등록</Button>
-
                         <Button variant="outlined" color="error" onClick={handleDelete}>도서 삭제</Button>
+                        <Button variant="outlined" color="error" onClick={handleDeleteAll}>전체 삭제</Button>
                     </Stack>
                     <Dialog open={isDialogOpen} onClose={handleDialogCancel}
                         maxWidth="sm"

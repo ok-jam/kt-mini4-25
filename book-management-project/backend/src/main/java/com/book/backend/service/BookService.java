@@ -20,6 +20,5 @@ public interface BookService {
     List<BookDTO.BookList> bookList();
     BookDTO.BookDetail bookDetail(Long id);
     void bookDelete(Long id);
-
-    Book findBookEntity(Long id);
+    void bookDeleteAll();
 }

@@ -16,12 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.book.backend.domain.Book;
 import com.book.backend.dto.BookDTO;
 import com.book.backend.service.BookService;
-import com.book.backend.service.ImageService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/books")
@@ -29,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BookController {
 
     public final BookService bookService;
-    public final ImageService imageService;
 
     // 도서 등록
     @PostMapping
@@ -64,6 +60,13 @@ public class BookController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.bookDelete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // 도서 전체 삭제
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllBooks() {
+        bookService.bookDeleteAll();
         return ResponseEntity.noContent().build();
     }
 

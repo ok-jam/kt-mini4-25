@@ -79,8 +79,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book findBookEntity(Long id) {
-        return bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("책 없음"));
+    public void bookDeleteAll() {
+        bookRepository.deleteAll();
     }
+
+//    @Override
+//    public Book findBookEntity(Long id) {
+//        return bookRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("책 없음"));
+//    }
 }
